@@ -5,15 +5,22 @@ body{
     display: flex;
     width: 100vw;
     height: 7vh;
+    align-items: center;
 }
 .logo{
     display: flex;
     height: 100%;
+    width: 9vw;
+    margin-right: 6vw;
     justify-content: center;
     background-color: #9749ff;
     margin-left: 1vw;
     border-radius: 75px;
     padding-right: 1vw;
+}
+.logo:hover{
+    scale: 1.03;
+    filter: saturate(2);
 }
 .logo h1{
     color: white;
@@ -23,5 +30,64 @@ body{
     height: 100%;
 }
 .searchbar{
-    width: ;
+    display: flex;
+    width: 70vw;
+    height: 100%;
+    color: black;
+    text-align: center;
+    text-decoration: none;
+    justify-content: center;
+    align-items: center;
 }
+.searchbar .text {
+     height: 70%;
+     width: 90%;
+     background-color: #e3cfff;
+     color: #9749ff;
+     border: none;
+     border-radius: 5px;
+     font-size: 2vh;
+     font-weight: bold;
+     padding-left: 10px;
+}
+.searchbar .text ::placeholder{
+    color: #9d93ab;
+}
+
+.searchbar .button {
+     height: 70%;
+     width: 3%;
+     background-color: #9749ff;
+     border: none;
+     border-radius: 5px;
+     background-image: url("/img/magnifying glass.svg");
+     background-repeat: no-repeat;
+     background-position: center;
+}
+.searchbar .button:hover{
+    scale: 1.03;
+    filter: saturate(2);
+}
+.user{
+    display: flex;
+    height: 70%;
+    width: 7vw;
+    background-color: #e3cfff;
+    border-radius: 100px;
+}
+.user:hover{
+    scale: 1.03;
+    filter: saturate(2);
+}
+.user div{
+    width: 5vw;
+    font-size: 70%;
+    color: #9749ff;
+    margin-left: 4%;
+}
+.user img{
+    height: 80%;
+    border-radius: 100px;
+    border: 5px solid #9749ff;
+}
+

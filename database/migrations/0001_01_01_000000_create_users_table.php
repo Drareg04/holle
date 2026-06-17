@@ -35,6 +35,19 @@ return new class extends Migration
             $table->longText('payload');
             $table->integer('last_activity')->index();
         });
+
+        Schema::create('social_accounts', function (Blueprint $table) {
+            $table->string('id')->primary();
+
+            $table->unsignedInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+
+            $table->string('provider_user_id');
+            $table->string('provider');
+            $table->unique(['provider_user_id', 'provider']);
+
+            $table->timestamps();
+        });
     }
 
     /**
