@@ -7,7 +7,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-// ->name('login');
+Route::view('/login', "auth.login")->name('login');
 Route::get('/auth/authentik/redirect', [LoginController::class, 'authentikRedirect']);
 Route::get('/auth/authentik/callback', [LoginController::class, 'authentikCallback']);
 Route::get('/auth/google/redirect', [LoginController::class, 'googleRedirect']);

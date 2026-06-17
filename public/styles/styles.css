@@ -91,3 +91,29 @@ body{
     border: 5px solid #9749ff;
 }
 
+.purchases{
+    display: flex;
+    height: 70%;
+    width: 2.3vw;
+    margin-left: 2.7vw;
+    background-repeat: no-repeat;
+    background-color: #9749ff;
+    background-image: url("/img/chat.svg");
+    border-radius: 10px;
+}
+
+.footer{
+    margin-left: -8px;
+    display: flex;
+    justify-content: center;
+    padding: 1vh 0 10vh 0;
+    gap: 10vw;
+    width: 100vw;
+    background-color: #e3cfff;
+    text-align: center;
+}
+.footer div a{
+    text-decoration: none;
+    color: black;
+}
+
