@@ -8,9 +8,14 @@ Route::get('/', function () {
 });
 
 Route::view('/login', "auth.login")->name('login');
-Route::get('/auth/authentik/redirect', [LoginController::class, 'authentikRedirect']);
-Route::get('/auth/authentik/callback', [LoginController::class, 'authentikCallback']);
-Route::get('/auth/google/redirect', [LoginController::class, 'googleRedirect']);
-Route::get('/auth/google/callback', [LoginController::class, 'googleCallback']);
+Route::post("/login", [LoginController::class, 'passwordLogin']);
+Route::get('/auth/{provider}/redirect', [LoginController::class, 'providerRedirect']);
+Route::get('/auth/{provider}/callback', [LoginController::class, 'providerCallback']);
+
 
 Route::get('/auth/logout', [LoginController::class, 'logout'])->name('logout');
+
+// logged in routes
+Route::group(['middleware' => ['auth']], function () {
+
+});

@@ -2,77 +2,74 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\SocialAccount;
 use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\Auth;
 use Laravel\Socialite\Facades\Socialite;
 use App\Models\User;
+use Illuminate\Support\MessageBag;
 
 class LoginController extends Controller
 {
-    // Authentik (Subpolygon Account)
-    public function authentikRedirect()
+    // SSO (Subpolygon/Google)
+    public function providerRedirect(string $provider)
     {
-        return Socialite::driver('authentik')->redirect();
+        return Socialite::driver($provider)->redirect();
     }
 
-    public function authentikCallback()
+    public function providerCallback(string $provider)
     {
 
-        $oauthuser = Socialite::driver('authentik')->user();
+        $oauthuser = Socialite::driver($provider)->user();
 
-        $user = User::updateOrCreate([
-            'oauth_id' => $oauthuser->id,
-        ], [
-            'name' => $oauthuser->name,
-            'username' => $oauthuser->preferred_username,
-            'email' => $oauthuser->email,
-            'is_admin' => in_array("authentik Admins", $oauthuser->groups, true),
-            'oauth_token' => $oauthuser->token,
-            'oauth_refresh_token' => $oauthuser->refreshToken,
+        // create or use socialite
+        $social = SocialAccount::firstOrNew([
+            'oauth_id' => $oauthuser->getId(),
+            'provider' => $provider
         ]);
 
-        Auth::login($user, true);
+        if ($social->exists) {
+            Auth::login($social->user);
+            return redirect()->intended('/');
+        }
 
-        return redirect()->intended('/');
-    }
-
-    // Google
-    public function googleRedirect()
-    {
-        return Socialite::driver('google')->redirect();
-    }
-
-    public function googleCallback()
-    {
-
-        $oauthuser = Socialite::driver('google')->user();
-
-        $user = User::updateOrCreate([
-            'oauth_id' => $oauthuser->id,
-        ], [
-            'name' => $oauthuser->name,
-            'username' => $oauthuser->preferred_username,
-            'email' => $oauthuser->email,
-            'is_admin' => false,
-            'oauth_token' => $oauthuser->token,
-            'oauth_refresh_token' => $oauthuser->refreshToken,
+        // create user
+        $user = User::firstOrNew([
+            'email' => $oauthuser->getEmail()
         ]);
+        if ($user->exists) {
+            $errors = new MessageBag();
+            $errors->add('user_exists', 'User account already exists, try logging in with a different provider');
+            return view("auth.login")->with("errors", $errors);
+        } else {
+            $user->name = $oauthuser->getName();
+            // $user->password = bcrypt(str_random(30));
+            $user->save();
 
-        Auth::login($user, true);
+            $social->user()->associate($user);
+            $social->save();
 
-        return redirect()->intended('/');
+            Auth::login($user);
+
+            return redirect()->intended('/');
+        }
     }
+
 
     // Email and password
+    public function passwordLogin() {}
 
+
+
+    public function passwordSignup() {}
 
 
 
     public function logout(Request $request)
     {
-        // Auth::logout();
-        auth()->guard('web')->logout();
+        Auth::logout();
+        // auth()->guard('web')->logout();
 
         $request->session()->invalidate();
 

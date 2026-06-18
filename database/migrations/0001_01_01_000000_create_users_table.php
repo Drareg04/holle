@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
+            $table->string('password')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });
@@ -37,14 +37,14 @@ return new class extends Migration
         });
 
         Schema::create('social_accounts', function (Blueprint $table) {
-            $table->string('id')->primary();
+            $table->id();
 
-            $table->unsignedInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreignId('user_id')->references('id')->on('users')->onDelete('cascade');
 
-            $table->string('provider_user_id');
+            $table->longText('oauth_id');
             $table->string('provider');
-            $table->unique(['provider_user_id', 'provider']);
+
+            $table->unique(['oauth_id', 'provider']);
 
             $table->timestamps();
         });
@@ -58,5 +58,6 @@ return new class extends Migration
         Schema::dropIfExists('users');
         Schema::dropIfExists('password_reset_tokens');
         Schema::dropIfExists('sessions');
+        Schema::dropIfExists('social_accounts');
     }
 };
