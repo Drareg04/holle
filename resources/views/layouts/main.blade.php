@@ -22,14 +22,29 @@
                 <input type="submit" class="button" value="">
             </form>
             @if (Auth::check())
-                <a class="user"><img src="/img/user.svg">
-                    <div>
-                        <p>Welcome, {{ Auth::user()->name }}</p><b>
-                            <p style="margin-top: -10%">Your account</p>
-                        </b>
+                <a class="user"><img style="z-index: 10" src="/img/user.svg">
+                    <div class="usertext">
+                        <p>Welcome, {{ Auth::user()->name }}</p>
+                    </div>
+                    <div id="userpopup" class="popup">
+                        <div id="userpopupcontent">
+
+                            <a href="/{{ Auth::user()->username }}">
+                                <p>Profile</p>
+                            </a>
+                            <a href="/settings">
+                                <p>Settings</p>
+                            </a>
+                            <a href="/auth/logout">
+                                <p>Log Out</p>
+                            </a>
+
+                        </div>
                     </div>
                 </a>
-                <div class="purchases"></div>
+                <a class="purchases" href="/chat">
+                    <div></div>
+                </a>
             @else
                 <a class="user" href="https://holle.tacticalpigeon.com/login"><img src="/img/user.svg">
                     <div>
@@ -58,7 +73,7 @@
         </div>
         <div>
             <h1>Make Money with Us</h1>
-            <a>
+            <a href="/become_merchant">
                 <p>Sell on Holle</p>
             </a>
             <a>
@@ -75,6 +90,9 @@
             </a>
         </div>
     </div>
+
+    <script src="/js/jquery-4.0.0.min.js"></script>
+    <script src="/js/main.js"></script>
 </body>
 
 </html>

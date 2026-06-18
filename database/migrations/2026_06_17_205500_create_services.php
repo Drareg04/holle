@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('services', function (Blueprint $table) {
             $table->id();
+            $table->string('slug');
             $table->string('title');
             $table->text('description');
             $table->boolean('featured');
@@ -24,7 +25,7 @@ return new class extends Migration
             $table->foreign('owner_id')->references('id')->on('users');
         });
 
-        Schema::create('carousel', function (Blueprint $table) {
+        Schema::create('carousel_imgs', function (Blueprint $table) {
             $table->id();
             $table->boolean('active');
             $table->string('href');
@@ -39,6 +40,7 @@ return new class extends Migration
      */
     public function down(): void
     {
+        Schema::dropIfExists('carousel_imgs');
         Schema::dropIfExists('services');
     }
 };

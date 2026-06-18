@@ -79,8 +79,9 @@ body{
 .user:hover{
     scale: 1.03;
     filter: saturate(2);
+    z-index: 10;
 }
-.user div{
+.user .usertext{
     width: 5vw;
     font-size: 70%;
     color: #9749ff;
@@ -91,7 +92,33 @@ body{
     border-radius: 100px;
     border: 5px solid #9749ff;
 }
-
+#userpopup{
+    display: none;
+    position: absolute;
+    width: 6vw;
+    max-height: 88vh;
+    background-color: #e3cfff;
+    z-index: 9;
+    right: 5.55vw;
+    top: 6.70vh;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    padding-top: 1vh;
+    padding-bottom: 1vh;
+}
+#userpopupcontent{
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    justify-content: center;
+    align-items: center;
+    border-top: 3px solid #9749ff;
+    color: #9749ff;
+}
+.usercorners{
+    border-bottom-right-radius: 0;
+    transition: 0.3s;
+}
 .purchases{
     display: flex;
     height: 70%;

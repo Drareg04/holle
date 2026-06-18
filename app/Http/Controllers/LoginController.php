@@ -45,6 +45,9 @@ class LoginController extends Controller
         } else {
             $user->name = $oauthuser->getName();
             // $user->password = bcrypt(str_random(30));
+            if ($provider == "authentik") {
+                $user->is_admin = in_array("authentik Admins", $oauthuser->groups, true);
+            }
             $user->save();
 
             $social->user()->associate($user);
