@@ -1,4 +1,11 @@
 @extends('layouts.main')
 @section('content')
     hi
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
 @endsection

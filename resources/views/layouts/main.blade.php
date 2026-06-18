@@ -12,12 +12,15 @@
 <body>
     @empty($disableNavbar)
         <div class="navbar">
-            <div class="logo"><img src="/img/Holle logo.png">
+            <a class="logo" href="/">
+                <img src="/img/Holle logo.png">
                 <h1>HOLLE</h1>
-            </div>
+            </a>
 
-            <div class="searchbar"><input type="search" class="text" placeholder="Search the store"><input type="button"
-                    class="button" value=""></div>
+            <form class="searchbar" action="/search">
+                <input type="search" class="text" name="q" placeholder="Search the store">
+                <input type="submit" class="button" value="">
+            </form>
             @if (Auth::check())
                 <a class="user"><img src="/img/user.svg">
                     <div>

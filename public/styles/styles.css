@@ -25,6 +25,7 @@ body{
 .logo h1{
     color: white;
     font-size: 150%;
+    text-decoration: none;
 }
 .logo img{
     height: 100%;
@@ -120,11 +121,10 @@ form{
     background-color: #e3cfff;
     display: flex;
     flex-direction: column;
-    justify-self: center;
     justify-content: center;
     border-radius: 25px;
     padding: 50px;
-    margin: 10vh 0 10vh 0;
+    margin: 0 0 10vh 0;
 }
 
 .login{
@@ -154,7 +154,7 @@ button{
     margin-bottom: 2vh;
 }
 
-.authicons, img{
+.authicons, .authicons img{
     width: 100%;
     display: flex;
     justify-content: center;
@@ -171,4 +171,36 @@ button{
     width: 100%;
     text-align: center;
 }
-#big{}
+.bigcenterlogo{
+    display: flex;
+    width: 15vw;
+    justify-content: center;
+    background-color: #9749ff;
+    border-radius: 75px;
+    padding-right: 1vw;
+    align-items: center;
+    gap: 1vw;
+    margin: 5vh 0 5vh 0;
+}
+.bigcenterlogo:hover{
+    scale: 1.03;
+    filter: saturate(2);
+}
+.bigcenterlogo h1{
+    color: white;
+    font-size: 200%;
+    text-decoration: none;
+}
+.bigcenterlogo img{
+    width: 5vw;
+}
+#body{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+#body div{
+    display: flex;
+}

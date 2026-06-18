@@ -30,7 +30,7 @@ class LoginController extends Controller
         ]);
 
         if ($social->exists) {
-            Auth::login($social->user);
+            Auth::login($social->user, true);
             return redirect()->intended('/');
         }
 
@@ -50,7 +50,7 @@ class LoginController extends Controller
             $social->user()->associate($user);
             $social->save();
 
-            Auth::login($user);
+            Auth::login($user, true);
 
             return redirect()->intended('/');
         }
@@ -58,7 +58,23 @@ class LoginController extends Controller
 
 
     // Email and password
-    public function passwordLogin() {}
+    public function passwordLogin(Request $request)
+    {
+        $credentials = $request->validate([
+            'email' => ['required', 'email'],
+            'password' => ['required'],
+        ]);
+
+        if (Auth::attempt($credentials)) {
+            $request->session()->regenerate();
+
+            return redirect()->intended('dashboard');
+        }
+
+        return back()->withErrors([
+            'email' => 'The provided credentials do not match our records.',
+        ])->onlyInput('email');
+    }
 
 
 
