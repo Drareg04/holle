@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\RecommendationController;
 use Illuminate\Support\Facades\Route;
 
 // auth
@@ -12,9 +13,7 @@ Route::get('/auth/{provider}/callback', [LoginController::class, 'providerCallba
 Route::get('/auth/logout', [LoginController::class, 'logout'])->name('logout');
 
 // normal pages
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [RecommendationController::class, "mainPage"]);
 
 Route::view("/search", "search");
 
