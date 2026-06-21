@@ -10,10 +10,8 @@ class RecommendationController extends Controller
 {
     public function mainPage()
     {
-
-        $carousel = CarouselImg::where("active", 1)->get();
         $services = Service::all();
 
-        return view('welcome', ["carousel" => $carousel, "services" => $services]);
+        return view('welcome', ["services" => $services]);
     }
 }

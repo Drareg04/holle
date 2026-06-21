@@ -25,7 +25,7 @@ class LoginController extends Controller
 
         // create or use socialite
         $social = SocialAccount::firstOrNew([
-            'oauth_id' => $oauthuser->getId(),
+            'oauth_id' => $oauthuser->id,
             'provider' => $provider
         ]);
 
@@ -36,14 +36,15 @@ class LoginController extends Controller
 
         // create user
         $user = User::firstOrNew([
-            'email' => $oauthuser->getEmail()
+            'email' => $oauthuser->email
         ]);
         if ($user->exists) {
             $errors = new MessageBag();
             $errors->add('user_exists', 'User account already exists, try logging in with a different provider');
             return view("auth.login")->with("errors", $errors);
         } else {
-            $user->name = $oauthuser->getName();
+            $user->name = $oauthuser->name;
+            $user->username = $oauthuser->preferred_username;
             // $user->password = bcrypt(str_random(30));
             if ($provider == "authentik") {
                 $user->is_admin = in_array("authentik Admins", $oauthuser->groups, true);

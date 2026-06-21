@@ -1,5 +1,6 @@
 body{
   background-color: #b883ff;
+  overflow-x: hidden;
 }
 .navbar{
     display: flex;
@@ -61,7 +62,7 @@ body{
      background-color: #9749ff;
      border: none;
      border-radius: 5px;
-     background-image: url("/img/magnifying glass.svg");
+     background-image: url("/img/magnifying_glass.svg");
      background-repeat: no-repeat;
      background-position: center;
 }
@@ -252,4 +253,32 @@ button{
 }
 #body div{
     display: flex;
+}
+.carouselimgdiv{
+    display: flex;
+    overflow: hidden;
+    margin-top: 1vh;
+    margin-left: -1vw;
+    width: 202vw;
+}
+.carousel{
+    position: relative;
+    width: 101vw;
+    transition: 2s;
+}
+.carousel img{
+    width: 101vw;
+}
+.arrow{
+    width: 100px;
+    background-color: #9749ff;
+    position: absolute;
+    top: 30vh;
+    opacity: 70%;
+    border-radius: 10px;
+    display: none;
+}
+
+.featuredimgdiv{
+    
 }

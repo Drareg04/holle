@@ -15,9 +15,10 @@ return new class extends Migration
             $table->id();
             $table->string('slug');
             $table->string('title');
-            $table->text('description');
+            $table->text('description')->nullable();
+            $table->boolean('published');
             $table->boolean('featured');
-            $table->foreignId('owner_id')->nullable();
+            $table->foreignId('owner_id');
             $table->integer('price'); // last two digits decimals
 
             $table->timestamps();
@@ -25,14 +26,7 @@ return new class extends Migration
             $table->foreign('owner_id')->references('id')->on('users');
         });
 
-        Schema::create('carousel_imgs', function (Blueprint $table) {
-            $table->id();
-            $table->boolean('active');
-            $table->string('href');
-            $table->string('image')->nullable();
-
-            $table->timestamps();
-        });
+        // Schema::create("service_images", function (Blueprint $table) {});
     }
 
     /**
@@ -40,7 +34,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('carousel_imgs');
         Schema::dropIfExists('services');
     }
 };

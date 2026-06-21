@@ -1,4 +1,4 @@
 $(".user").click(function () {
-    $("#userpopup").fadeToggle();
+    $("#userpopup").slideToggle("slow");
     $(".user").toggleClass("usercorners");
 })

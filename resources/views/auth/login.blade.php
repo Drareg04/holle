@@ -16,8 +16,8 @@
     <div id="body">
         <div>
             <a class="bigcenterlogo" href="/">
-                    <img src="/img/Holle logo.png">
-                    <h1>HOLLE</h1>
+                <img src="/img/Holle logo.png">
+                <h1>HOLLE</h1>
             </a>
         </div>
         <div>
@@ -34,8 +34,12 @@
                 </a>
                 <button type="submit">Login</button>
                 <p>Need an account? <a href="/signup">Register</a></p>
-                
-                <div id="separator"><div></div><p>Or continue with</p><div></div></div>
+
+                <div id="separator">
+                    <div></div>
+                    <p>Or continue with</p>
+                    <div></div>
+                </div>
                 <div class="authicons">
                     <a href="/auth/authentik/redirect"><img src="/img/subpolygonlogo.png"></a>
                     <a href="/auth/google/redirect"><img src="/img/googlelogo.webp"></a>
