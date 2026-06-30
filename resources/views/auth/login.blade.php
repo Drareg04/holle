@@ -16,7 +16,7 @@
     <div id="body">
         <div>
             <a class="bigcenterlogo" href="/">
-                <img src="/img/Holle logo.png">
+                <img src="/img/Holle_logo.png">
                 <h1>HOLLE</h1>
             </a>
         </div>

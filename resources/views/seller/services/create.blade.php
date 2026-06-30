@@ -1,6 +1,7 @@
 @extends('layouts.seller')
 @section('seller')
-    <form action="/seller/services" method="post">
+    <form method="post">
+        @csrf
         <label for="title">Title: </label>
         <input type="text" name="title" id="title">
 

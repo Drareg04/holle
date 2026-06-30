@@ -1,0 +1,66 @@
+.productcontent{
+    width: 80vw;
+    margin-left: 10vw;
+}
+
+.userinfo{
+    display: flex;
+}
+.userinfo p{
+    color: black;
+    font-size: 20px;
+    font-weight: bolder;
+    padding-top: 20px;
+}
+.profilepicture{
+    background-image: url(/img/pigeon-spinning.gif);
+    background-repeat: no-repeat;
+    background-clip: padding-box;
+    background-position: center;
+    background-size: cover;
+    border-radius: 100px;
+    width: 70px;
+    height: 70px;
+}
+.middle{
+    display: flex;
+    width: 100%;
+}
+.images .mainimage{
+    background-image: url(/img/pigeon-spinning.gif);
+    background-repeat: no-repeat;
+    background-clip: padding-box;
+    background-position: center;
+    background-size: cover;
+    border-radius: 25px;
+    width: 600px;
+    height: 400px;
+}
+.checkout{
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    justify-content: center;
+    align-items: center;
+    right: 10vw;
+}
+
+.checkout div{
+    width: 90%;
+    padding: 30px;
+    background-color: #e3cfff;
+    border-radius: 5px;
+}
+
+.checkout div button{
+    width: 100%;
+}
+
+.contactme{
+    background-color: transparent;
+    border: 3px solid #e3cfff;
+    border-radius: 5px;
+    width: 100%;
+    margin-top: 20px;
+}

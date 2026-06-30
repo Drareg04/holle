@@ -20,7 +20,7 @@ class Service extends Model
     /**
      * Get the user that owns the service.
      */
-    public function owner(): BelongsTo
+    public function seller(): BelongsTo
     {
         return $this->belongsTo(User::class);
     }

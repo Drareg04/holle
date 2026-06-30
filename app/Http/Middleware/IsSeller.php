@@ -22,6 +22,6 @@ class IsSeller
                 return $next($request);
             }
         }
-        return back();
+        return redirect("/");
     }
 }

@@ -10,8 +10,8 @@ class RecommendationController extends Controller
 {
     public function mainPage()
     {
-        $services = Service::all();
+        $featuredServices = Service::all();
 
-        return view('welcome', ["services" => $services]);
+        return view('welcome', ["featuredServices" => $featuredServices]);
     }
 }

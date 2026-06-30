@@ -1,7 +1,7 @@
 @extends('layouts.main')
-@php
+{{-- @php
     $disableNavbar = true;
-@endphp
+@endphp --}}
 @section('content')
     <h1>Holle Seller</h1>
     {{-- same style as settings, left stuck bar but shaped differently --}}

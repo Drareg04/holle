@@ -16,17 +16,29 @@ return new class extends Migration
             $table->string('slug');
             $table->string('title');
             $table->text('description')->nullable();
+            $table->fullText(['title', 'description']);
+            
             $table->boolean('published');
             $table->boolean('featured');
-            $table->foreignId('owner_id');
-            $table->integer('price'); // last two digits decimals
-
+            $table->foreignId('seller_id');
+            $table->decimal('price', places: 2);
             $table->timestamps();
 
-            $table->foreign('owner_id')->references('id')->on('users');
+            $table->foreign('seller_id')->references('id')->on('users');
         });
 
-        // Schema::create("service_images", function (Blueprint $table) {});
+        Schema::create("services_media", function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('service_id');
+            $table->tinyInteger('type'); // 1 image, 2 video; up to 255 for future use
+            $table->tinyInteger('position');
+            $table->boolean("cover");
+            $table->string('url');
+            $table->string('alt');
+            $table->timestamps();
+
+            $table->foreign('service_id')->references('id')->on('services');
+        });
     }
 
     /**
@@ -34,6 +46,7 @@ return new class extends Migration
      */
     public function down(): void
     {
+        Schema::dropIfExists('services_media');
         Schema::dropIfExists('services');
     }
 };

@@ -4,7 +4,7 @@ use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\MiscController;
 use App\Http\Controllers\RecommendationController;
-use App\Http\Controllers\Seller\ServiceController;
+use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\SettingsController;
 use App\Http\Middleware\IsAdmin;
 use App\Http\Middleware\IsSeller;
@@ -30,7 +30,9 @@ Route::middleware([IsAdmin::class])->group(function () {
 // normal pages
 Route::get('/', [RecommendationController::class, "mainPage"]);
 
-Route::view("/search", "search");
+Route::get("/services", [ServiceController::class, "search"]);
+Route::get("/services/{username}", [ServiceController::class, "indexSeller"]);
+Route::get("/services/{username}/{slug}", [ServiceController::class, "show"]);
 
 
 // logged in routes
@@ -38,6 +40,8 @@ Route::group(['middleware' => ['auth']], function () {
     Route::view("/chat", "search");
 
     Route::get('/settings', [SettingsController::class, "account"]);
+    Route::post('/settings', [SettingsController::class, "updateAccount"]);
+
     Route::get('/settings/seller', [SettingsController::class, "seller"]);
     Route::post('/settings/seller', [SettingsController::class, "sellerSubmit"]);
 
@@ -47,7 +51,14 @@ Route::group(['middleware' => ['auth']], function () {
 // seller routes
 Route::middleware([IsSeller::class])->group(function () {
     Route::view("/seller", "seller.dash");
-    Route::resource("/seller/services", ServiceController::class);
+
+    // services seller routes
+    // Route::resource("/seller/services", ServiceController::class);
+    Route::get("seller/services", [ServiceController::class, "index"]);
+    Route::get("seller/services/create", [ServiceController::class, "create"]);
+    Route::post("seller/services/create", [ServiceController::class, "store"]);
+    Route::get("seller/services/{slug}", [ServiceController::class, "edit"]);
+    Route::post("seller/services/{slug}", [ServiceController::class, "update"]);
 });
 
 

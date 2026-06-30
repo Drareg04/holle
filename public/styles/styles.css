@@ -213,6 +213,9 @@ button{
 .authicons a{
     width: 10%;
 }
+.authicons a img{
+    border-radius: 5px;
+}
 .authicons a:hover{
     scale: 1.1;
 }
@@ -277,8 +280,4 @@ button{
     opacity: 70%;
     border-radius: 10px;
     display: none;
-}
-
-.featuredimgdiv{
-    
 }

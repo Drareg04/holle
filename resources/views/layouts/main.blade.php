@@ -7,6 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Holle</title>
     <link rel="stylesheet" href="/styles/styles.css">
+    @yield('styles')
 </head>
 
 <body>
@@ -17,23 +18,38 @@
                 <h1>HOLLE</h1>
             </a>
 
-            <form class="searchbar" action="/search">
+            <form class="searchbar" action="/services">
                 <input type="search" class="text" name="q" placeholder="Search the store">
                 <input type="submit" class="button" value="">
             </form>
             @if (Auth::check())
                 <div class="user">
-                    <img style="z-index: 10" src="/img/user.svg" alt="user default logo">
+                    {{-- <img style="z-index: 10" src="/img/user.svg" alt="user default logo"> --}}
+                    <img style="z-index: 10" src="{{ Auth::user()->pfp_url }}" alt="Profile picture">
+                    {{-- TODO, make it stop blinking out of existance on page change --}}
                     <div class="usertext">
                         <p>Welcome, {{ Auth::user()->name }}</p>
                     </div>
                 </div>
                 <div id="userpopup" class="popup">
                     <div id="userpopupcontent">
+                        {{-- TODO, i'm not sure calling the auth facade that much is good --}}
 
-                        <a href="/{{ Auth::user()->username }}">
+                        @if (Auth::user()->is_admin)
+                            <a href="/admin">
+                                <p>Admin panel</p>
+                            </a>
+                        @endif
+                        @if (Auth::user()->is_seller)
+                            <a href="/seller">
+                                <p>Seller page</p>
+                            </a>
+                        @endif
+                        {{-- why is the hr fucked up --}}
+                        <hr>
+                        {{-- <a href="/{{ Auth::user()->username }}">
                             <p>Profile</p>
-                        </a>
+                        </a> --}}
                         <a href="/settings">
                             <p>Settings</p>
                         </a>
@@ -46,16 +62,19 @@
                     <div></div>
                 </a>
             @else
-                <a class="user" href="https://holle.tacticalpigeon.com/login"><img src="/img/user.svg" alt="user default logo">
+                <a class="user" href="https://holle.tacticalpigeon.com/login"><img src="/img/user.svg"
+                        alt="user default logo">
                     <div>
-                            <p><b>Sign/Log in</b></p>
+                        <p><b>Sign/Log in</b></p>
                     </div>
                 </a>
             @endif
         </div>
     @endempty
 
+    {{-- TODO, could easily convert to spa with htmx --}}
     @yield('content')
+
     <div class="footer">
         <div>
             <h1>Get to know us</h1>
