@@ -34,7 +34,7 @@
             <tr>
                 <td>{{ $service->title }}</td>
                 <td>{{ Str::slug($service->title, '-') . '-' . $service->id }}</td>
-                <td>{{ $service->price / 100 }}</td>
+                <td>{{ $service->price }}</td>
                 <td><a href="/seller/services/{{ $service->slug }}">Edit</a></td>
             </tr>
         @endforeach

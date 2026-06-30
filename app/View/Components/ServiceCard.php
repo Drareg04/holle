@@ -6,14 +6,15 @@ use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class Header extends Component
+class ServiceCard extends Component
 {
+    // TODO make it not complain
+    public $service; 
     /**
      * Create a new component instance.
      */
-    public function __construct()
-    {
-        //
+    public function __construct($service) {
+        $this->service = $service;
     }
 
     /**
@@ -21,6 +22,6 @@ class Header extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.header');
+        return view('components.service-card');
     }
 }

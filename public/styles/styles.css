@@ -89,9 +89,11 @@ body{
     margin-left: 4%;
 }
 .user img{
-    height: 80%;
+    height: 40px;
+    width: 40px;
     border-radius: 100px;
     border: 5px solid #9749ff;
+    object-fit: cover;
 }
 #userpopup{
     display: none;
@@ -280,4 +282,45 @@ button{
     opacity: 70%;
     border-radius: 10px;
     display: none;
+}
+
+.searchcontent{
+    width: 100vw;
+    display: flex;
+    gap: 1.3vw;
+    padding: 5vh 10vw 5vh 10vw;
+}
+.servicecard{
+    display: flex;
+    flex-direction: column;
+    width: 19vw;
+    height: 350px;
+    background-color: #e1caff;
+    border-radius: 25px;
+}
+.servicecard a{
+    text-decoration: none !important;
+    color: black;
+}
+.servicecard img{
+    background-image: url(/img/pigeon-spinning.gif);
+    background-repeat: no-repeat;
+    background-clip: padding-box;
+    background-position: center;
+    background-size: cover;
+    border-radius: 25px;
+    width: 19vw;
+    height: 200px;
+}
+.cardinfo{
+    margin: 20px;
+}
+.cardinfo a{
+    display: flex;
+}
+.cardinfo a img{
+    width: 50px;
+    height: 50px;
+    border-radius: 100px;
+    margin-right: 10px;
 }
